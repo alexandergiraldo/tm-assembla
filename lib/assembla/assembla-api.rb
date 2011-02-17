@@ -70,28 +70,16 @@ module AssemblaAPI
     end
   end
 
-  class Space < Base
+  class Project < Base
 
    def tickets(options = {})
       Ticket.find(:all, :params => options.update(:space_id => id))
     end
   
-    def milestones(options = {})
-      Milestone.find(:all, :params => options.update(:space_id => id))
-    end
   end
 
   class Ticket < Base
     site_format << '/spaces/:space_id'
-  end
-
-  class Comment < Base
-    site_format << '/spaces/:space_id/tickets/:ticket_id'
-  end
-  
-  class Message < Base
-    site_format << '/spaces/:space_id'
-  end
-  
+  end	 
 
 end

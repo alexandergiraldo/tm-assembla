@@ -10,8 +10,8 @@ module TicketMaster::Provider
         self.summary
       end
       
-      def created_at
-        @created_at ||= self[:created_at] ? Time.parse(self[:created_at]) : nil
+      def created_on
+        @created_on ||= self[:created_on] ? Time.parse(self[:created_on]) : nil
       end
       
       def updated_at
@@ -19,7 +19,7 @@ module TicketMaster::Provider
       end
       
       def project_id
-        self.prefix_options[:project_id]
+        self.prefix_options[:space_id]
       end
       
     end
