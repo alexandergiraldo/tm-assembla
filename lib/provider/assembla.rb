@@ -16,10 +16,10 @@ module TicketMaster::Provider
       @authentication ||= TicketMaster::Authenticator.new(auth)
       # Set authentication parameters for whatever you're using to access the API
       auth = @authentication
-      if auth.server.blank? and auth.login.blank? and auth.password.blank?
-        raise "Please provide server, login and password"
+      if auth.login.blank? and auth.password.blank?
+        raise "Please provide login and password"
       end
-      AssemblaAPI.authenticate(auth.server, auth.login, auth.password)
+      AssemblaAPI.authenticate(auth.login, auth.password)
     end
     
     # declare needed overloaded methods here

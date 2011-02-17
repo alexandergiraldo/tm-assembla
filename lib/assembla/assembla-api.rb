@@ -36,15 +36,14 @@ module AssemblaAPI
     attr_accessor :username, :password, :host_format, :account_format, :domain_format, :protocol
 
     #Sets up basic authentication credentials for all the resources.
-    def authenticate(server, username, login)
-      @server    = server
+    def authenticate(username, login)
       @username  = username
       @password  = login
       self::Base.user = username
       self::Base.password = login
 
       resources.each do |klass|
-        klass.site = "http://#{username}:#{login}@#{server}"
+        klass.site = "http://#{username}:#{login}@www.assembla.com"
         #klass.site = klass.site_format % (host_format % [protocol, account_format % [username, login], domain_format % [server, "#{port}"]])
         klass.headers['Content-Type'] = 'application/x-www-form-urlencoded'
       end
