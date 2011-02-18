@@ -9,7 +9,7 @@ module TicketMaster::Provider
       def name
         self.title
       end
-      
+
       def created_at
         @created_at ||= self[:created_at] ? Time.parse(self[:created_at]) : nil
       end
