@@ -7,15 +7,23 @@ module TicketMaster::Provider
       API = AssemblaAPI::Project # The class to access the api's projects
       # declare needed overloaded methods here
       def name
-        self.title
+        self[:name]
       end
 
       def created_at
-        @created_at ||= self[:created_at] ? Time.parse(self[:created_at]) : nil
+        begin
+          Time.parse(self[:created_at])
+        rescue
+          self[:created_at]
+        end
       end
       
       def updated_at
-        @updated_at ||= self[:updated_at] ? Time.parse(self[:updated_at]) : nil
+        begin
+          Time.parse(self[:updated_at])
+        rescue
+          self[:updated_at]
+        end
       end
       
       # copy from this.copy(that) copies that into this

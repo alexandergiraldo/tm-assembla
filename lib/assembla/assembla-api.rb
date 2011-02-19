@@ -39,14 +39,20 @@ module AssemblaAPI
 
   class Project < Base
    self.site += 'spaces/my_spaces'
+   #def tickets(options = {})
+    #  Ticket.find(:all, :params => options.update(:space_id => id))
+   #end
    def tickets(options = {})
-      Ticket.find(:all, :params => options.update(:space_id => id))
-   end
-
+      ProjectTicket.find(:all, :params => options.update(:space_id => id))
+    end
   end
 
   class Ticket < Base
     self.site += 'spaces/:space_id'
   end   
 
+  class ProjectTicket < Base
+    self.site += 'spaces/:space_id'
+    self.element_name = 'ticket'
+  end
 end
