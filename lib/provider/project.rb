@@ -25,7 +25,22 @@ module TicketMaster::Provider
           self[:updated_at]
         end
       end
-      
+    
+      def tickets(*options)
+        begin
+          if options.first.is_a? Hash
+            #options[0].merge!(:params => {:id => id})
+            super(*options)
+          elsif options.empty?
+            tickets = AssemblaAPI::Ticket.find(:all, :params => {:space_id => id}).collect { |ticket| TicketMaster::Provider::Assembla::Ticket.new ticket }
+          else
+            super(*options)
+          end
+        rescue
+          []
+        end
+      end
+
       # copy from this.copy(that) copies that into this
       def copy(project)
         project.tickets.each do |ticket|
