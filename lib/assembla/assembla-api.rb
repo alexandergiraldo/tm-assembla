@@ -39,7 +39,6 @@ module AssemblaAPI
 
   class Project < Base
    self.site += 'spaces/my_spaces'
-<<<<<<< HEAD
   end
 
   class Ticket < Base
@@ -48,17 +47,6 @@ module AssemblaAPI
 
   class Comment < Base
     self.site += '/spaces/:space_id/tickets/:ticket_number'
-=======
-   def tickets(options = {})
-      Ticket.find(:all, :params => options.update(:space_id => id))
-    end
-
   end
 
-  class Ticket < Base
-    self.site += 'spaces/:space_id'
-  end   
->>>>>>> c47de000afd7f01e09b6adc79cba2c98699d0e04
-
-  end   
 end
