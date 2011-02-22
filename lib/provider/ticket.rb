@@ -10,7 +10,7 @@ module TicketMaster::Provider
         self.summary
       end
       
-      def created_on
+      def created_at
         begin
           Time.parse(self[:created_on])
         rescue

@@ -8,7 +8,7 @@ module TicketMaster::Provider
     class Comment < TicketMaster::Provider::Base::Comment
       API = AssemblaAPI::Comment # The class to access the api's comments
       # declare needed overloaded methods here
-      def created_on
+      def created_at
         begin
           Time.parse(self[:created_on])
         rescue
