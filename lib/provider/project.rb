@@ -41,6 +41,11 @@ module TicketMaster::Provider
         end
       end
 
+      def ticket!(*options)
+        options[0].merge!(:space_id => id) if options.first.is_a?(Hash)
+        provider_parent(self.class)::Ticket.create(*options)
+      end
+
       # copy from this.copy(that) copies that into this
       def copy(project)
         project.tickets.each do |ticket|
